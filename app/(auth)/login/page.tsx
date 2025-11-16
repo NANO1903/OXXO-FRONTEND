@@ -22,9 +22,9 @@ export default function LoginPage() {
             }, {
                 withCredentials: true
             });
+            
             if (response.status === 201) {
                 router.replace(`/dashboard`);
-                console.log("Status 201");
             }
         } catch (e) {
             console.error(e);
