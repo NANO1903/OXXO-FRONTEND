@@ -6,8 +6,8 @@ import { authHeaders } from "@/helpers/authHeaders";
 import { Location, Manager } from "@/entitites";
 
 export default async function FormNewLocation({ searchParams }: { searchParams: Promise<{ store?: string }> }) {
-    const params = await searchParams;
-    if (params.store) return null;
+    const store = (await searchParams).store;
+    if (store) return null;
     const header = await authHeaders();
     let responseManagers = await fetch(`${API_URL}/manager`, {
         headers: {
