@@ -1,6 +1,12 @@
 "use server";
 
+import { API_URL, TOKEN_NAME } from "@/constants";
+import { authHeaders } from "@/helpers/authHeaders";
+import axios from "axios";
+
 export async function createLocation(formData: FormData) {
+    const header = await authHeaders();
+    if (!header) return;
     let location: any = {}
     let locationLatLng = [0, 0];
     for (const key of formData.keys()) {
@@ -16,5 +22,11 @@ export async function createLocation(formData: FormData) {
         }
     }
     location.locationLatLng = locationLatLng;
-    console.log(location);    
+    await axios.post(`${API_URL}/locations`, {
+        ...location
+    }, {
+        headers: {
+            ...header
+        }
+    });
 }
