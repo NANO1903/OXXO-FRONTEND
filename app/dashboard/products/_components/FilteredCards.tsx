@@ -9,6 +9,7 @@ import { Input, Select, SelectItem } from "@heroui/react";
 export default function FilteredCards({ products, providers }: { products: Product[], providers: Provider[] }) {
     const [filtered, setFiltered] = useState<string>("");
     const [provider, setProvider] = useState<string>();
+    const [show, setShow] = useState(false);
     const [productsList, setProductsList] = useState<Product[]>(products);
 
     useEffect(() => {
@@ -22,8 +23,10 @@ export default function FilteredCards({ products, providers }: { products: Produ
         })
 
         setProductsList(filteredProducts);
+        setShow(true);
     }, [filtered, provider]);
 
+    if (!show) return "";
     return (
         <div className="h-full flex flex-col border-r-orange-400 border-r-2">
             <div className="w-full pt-10 pb-2 px-10">
@@ -41,7 +44,7 @@ export default function FilteredCards({ products, providers }: { products: Produ
                 }} label="Nombre del producto" variant="underlined" color="secondary" />
             </div>
             <div className="w-full overflow-y-auto flex flex-col pt-10 px-12 gap-8 last:pb-8">
-                {productsList.map((product) => {
+                {show && productsList.map((product) => {
                     return (
                         <Link key={product.productId} href={`/dashboard/products/${product.productId}`}>
                             <ProductCard product={product} />

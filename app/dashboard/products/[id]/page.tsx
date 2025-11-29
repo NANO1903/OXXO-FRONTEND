@@ -1,3 +1,9 @@
+import { API_URL } from "@/constants";
+import { Product, Provider } from "@/entitites";
+import { authHeaders } from "@/helpers/authHeaders";
+import ProductCard from "./_components/ProductCard";
+import FormUpdateProduct from "./_components/FormUpdateProducts";
+
 export default async function ProductPage({ params }: { params: { id: string } }) {
     const { id: productId } = (await params) as { id: string };
     if (!productId) return null;
@@ -11,7 +17,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
             ...header
         },
         next: {
-            tags: [`dashboard:products:${productId}`]
+            tags: [`dashboard:products`]
         }
     })).json();
 
@@ -30,7 +36,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
             <div className="w-3/12">
                 <ProductCard product={product} />
             </div>
-            <div className="w-4/12">
+            <div className="w-3/12">
                 <FormUpdateProduct product={product} providers={providers} />
             </div>
         </div>
