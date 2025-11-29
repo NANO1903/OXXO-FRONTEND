@@ -5,7 +5,7 @@ import { Select, SelectItem } from "@heroui/react";
 
 export default function SelectProvider({ providers }: { providers: Provider[] }) {
     return (
-        <Select isRequired label="Selecciona un Proveedor" name="provider">
+        <Select isRequired label="Selecciona un Proveedor" name="provider" defaultSelectedKeys={[defaultProvider]}>
             {providers.map((provider) => {
                 return (
                     <SelectItem key={provider.providerId}>
