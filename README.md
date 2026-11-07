@@ -2,17 +2,39 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Use Node.js **22 or newer** and **pnpm 11.21.0** (pinned in `package.json`).
+This frontend uses pnpm exclusively; commit `pnpm-lock.yaml` with dependency changes
+and do not generate npm, Yarn, or Bun lockfiles.
+
+Install the locked dependencies, then run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install --frozen-lockfile
 pnpm dev
-# or
-bun dev
 ```
+
+To intentionally change dependencies, use `pnpm add` / `pnpm remove`, or edit
+`package.json` and run `pnpm install`. Review and commit the resulting lockfile.
+
+Install safeguards are configured in `pnpm-workspace.yaml`: dependency versions
+must be at least 24 hours old, exotic transitive sources are blocked, and only
+`@heroui/shared-utils` and `sharp` are approved to run dependency build scripts.
+Review any new build-script request before changing this allowlist; do not bypass
+these checks to make an install pass.
+
+HeroUI is pinned to **2.8.10** because the components and Tailwind plugin use its
+v2 APIs. HeroUI packages are hoisted for Tailwind's theme source scanning.
+
+Validate and build:
+
+```bash
+pnpm exec tsc --noEmit
+pnpm build
+pnpm start
+```
+
+The production build downloads Geist fonts from Google and needs network access.
+The dashboard store count also requires the backend to be running.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
