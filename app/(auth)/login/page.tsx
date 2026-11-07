@@ -38,7 +38,7 @@ export default function LoginPage() {
                 <Input label="Contraseña" name="userPassword" type="password" isRequired={true} size="sm" />
             </div>
             <div className="flex flex-col items-center gap-2">
-                <Button type="submit" disabled={submitting} className="self-center bg-orange-50 text-blue-400 font-extrabold">
+                <Button type="submit" isDisabled={submitting} className="self-center bg-orange-50 text-blue-400 font-extrabold">
                     {submitting ? <Spinner size="md" /> : "Iniciar Sesión"}
                 </Button>
                 <p className="text-white">¿No tienes una cuenta? <Link href="/signup" className="text-blue-700 underline">Regístrate</Link></p>
