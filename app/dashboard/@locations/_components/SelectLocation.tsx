@@ -21,7 +21,7 @@ export default function SelectLocation({ locations, store }: { locations: Locati
             })}
         >
             {locations.map((location: Location) => {
-                return <SelectItem key={location.locationId} value={location.locationId}>{location.locationName}</SelectItem>
+                return <SelectItem key={location.locationId}>{location.locationName}</SelectItem>
             })}
         </Select>
     );
