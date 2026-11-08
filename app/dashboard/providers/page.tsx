@@ -1,5 +1,7 @@
-const ProviderPage = () => {
-    return null;
-};
+export default function ProvidersPage() {
+    return (
+        <>
 
-export default ProviderPage;
+        </>
+    );
+};
