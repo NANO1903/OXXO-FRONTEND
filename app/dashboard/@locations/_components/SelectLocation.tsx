@@ -25,7 +25,6 @@ export default function SelectLocation({ locations, store }: Props) {
 
                 if (!key || key === "0") {
                     router.replace("/dashboard");
-                    router.refresh();
                 } else {
                     //router.replace(`/dashboard?store=${encodeURIComponent(key)}`);
                     router.replace(`/dashboard`);
